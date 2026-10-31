@@ -1,0 +1,357 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CampusSpace | Room Availability</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+
+        <div class="brand">
+            <div class="brand-icon">C</div>
+            <div>Campus<span>Space</span></div>
+        </div>
+
+        <p class="nav-label">WORKSPACE</p>
+
+        <nav>
+            <a class="active" href="#">▦ &nbsp; Dashboard</a>
+            <a href="#rooms">▣ &nbsp; Room catalogue</a>
+            <a href="#availability">▤ &nbsp; Availability</a>
+            <a href="#timetable">◷ &nbsp; Timetable</a>
+            <a href="#myBookings">▧ &nbsp; My Bookings</a>
+            <a href="#adminDashboard">⚙ &nbsp; Administration</a>
+        </nav>
+
+        <div class="sidebar-bottom">
+
+            <div class="help-box">
+                <div>Need assistance?</div>
+                <small>Find the right campus space for your next session.</small>
+            </div>
+
+            <div class="profile">
+                <div class="avatar">VA</div>
+                <div>
+                    <strong>Student Portal</strong>
+                    <small>Campus User</small>
+                </div>
+            </div>
+
+        </div>
+    </aside>
+
+
+    <!-- Main Content -->
+    <main class="main">
+
+        <!-- Header -->
+        <header class="topbar">
+            <div>
+                <small class="breadcrumb">CAMPUS / WORKSPACE</small>
+                <h2>Room Discovery</h2>
+            </div>
+
+            <div class="top-right">
+                <span class="status-dot"></span>
+                <span>System online</span>
+            </div>
+        </header>
+
+
+        <!-- Welcome Banner -->
+        <section class="welcome">
+
+            <div>
+                <p class="eyebrow">YOUR CAMPUS, YOUR SPACE</p>
+
+                <h1>
+                    Find your next
+                    <br>
+                    <span>perfect space.</span>
+                </h1>
+
+                <p class="welcome-text">
+                    Discover classrooms, computer labs and seminar halls across campus.
+                </p>
+            </div>
+
+            <div class="welcome-art">⌂</div>
+
+        </section>
+
+
+        <!-- Statistics -->
+        <section class="stats">
+
+            <div class="stat-card">
+                <small>TOTAL ROOMS</small>
+                <h2 id="totalRooms">--</h2>
+                <span>Registered spaces</span>
+            </div>
+
+            <div class="stat-card">
+                <small>CLASSROOMS</small>
+                <h2 id="classrooms">--</h2>
+                <span>Learning spaces</span>
+            </div>
+
+            <div class="stat-card">
+                <small>COMPUTER LABS</small>
+                <h2 id="labs">--</h2>
+                <span>Technical spaces</span>
+            </div>
+
+            <div class="stat-card">
+                <small>TOTAL CAPACITY</small>
+                <h2 id="capacity">--</h2>
+                <span>Available seating capacity</span>
+            </div>
+
+        </section>
+
+
+        <!-- Room Catalogue -->
+        <section class="catalogue" id="rooms">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">EXPLORE SPACES</p>
+                    <h2>Room catalogue</h2>
+                    <p class="muted">Browse registered campus facilities.</p>
+                </div>
+
+                <span class="room-count" id="roomCount">Loading rooms...</span>
+            </div>
+
+            <div class="filters">
+
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Search room or building..."
+                >
+
+                <select id="typeFilter">
+                    <option value="">All room types</option>
+                    <option value="Classroom">Classroom</option>
+                    <option value="Computer Lab">Computer Lab</option>
+                    <option value="Seminar Hall">Seminar Hall</option>
+                </select>
+
+            </div>
+
+            <div class="room-grid" id="roomGrid">
+                <p>Loading campus rooms...</p>
+            </div>
+
+        </section>
+
+
+        <!-- Room Availability Search -->
+        <section id="availability" class="bookings-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">CHECK BEFORE BOOKING</p>
+                    <h2>Room Availability</h2>
+                    <p class="muted">Find rooms available for your preferred time.</p>
+                </div>
+            </div>
+
+            <div class="availability-form">
+
+                <div>
+                    <label for="availabilityDate">Date</label>
+                    <input type="date" id="availabilityDate">
+                </div>
+
+                <div>
+                    <label for="availabilityStart">Start Time</label>
+                    <input type="time" id="availabilityStart">
+                </div>
+
+                <div>
+                    <label for="availabilityEnd">End Time</label>
+                    <input type="time" id="availabilityEnd">
+                </div>
+
+                <button onclick="checkAvailability()">
+                    Check Availability
+                </button>
+
+            </div>
+
+            <div id="availabilityResults">
+                <p>Select a date and time to check available rooms.</p>
+            </div>
+
+        </section>
+
+
+        <!-- Room Timetable -->
+        <section id="timetable" class="bookings-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">CAMPUS SCHEDULE</p>
+                    <h2>Room Timetable</h2>
+                    <p class="muted">View room booking schedules for a selected date.</p>
+                </div>
+            </div>
+
+            <div class="availability-form">
+
+                <div>
+                    <label for="timetableDate">Select Date</label>
+                    <input type="date" id="timetableDate">
+                </div>
+
+                <button onclick="loadTimetable()">
+                    View Timetable
+                </button>
+
+            </div>
+
+            <div id="timetableResults">
+                <p>Select a date to view the room timetable.</p>
+            </div>
+
+        </section>
+
+
+        <!-- My Bookings -->
+        <section id="myBookings" class="bookings-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">YOUR ACTIVITY</p>
+                    <h2>My Bookings</h2>
+                    <p class="muted">
+                        View your room booking requests and their status.
+                    </p>
+                </div>
+
+                <span class="room-count" id="bookingCount">
+                    Loading bookings...
+                </span>
+            </div>
+
+            <div id="bookingHistory">
+                <p>Loading your bookings...</p>
+            </div>
+
+        </section>
+
+
+        <!-- Admin Dashboard -->
+        <section id="adminDashboard" class="bookings-section">
+
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">ADMINISTRATION</p>
+                    <h2>Manage Booking Requests</h2>
+                    <p class="muted">
+                        Review and manage student room requests.
+                    </p>
+                </div>
+            </div>
+            
+<!-- Add New Room Form -->
+<div class="add-room-panel">
+
+    <h3>Add New Campus Room</h3>
+    <p class="muted">Register a classroom, laboratory or seminar hall.</p>
+
+    <form id="addRoomForm">
+
+        <div class="room-form-grid">
+
+            <div>
+                <label for="newRoomName">Room Name</label>
+                <input type="text" id="newRoomName"
+                       placeholder="e.g. Block 13 - Room 103" required>
+            </div>
+
+            <div>
+                <label for="newBuilding">Building</label>
+                <input type="text" id="newBuilding"
+                       placeholder="e.g. Block 13" required>
+            </div>
+
+            <div>
+                <label for="newCapacity">Capacity</label>
+                <input type="number" id="newCapacity"
+                       min="1" placeholder="e.g. 40" required>
+            </div>
+
+            <div>
+                <label for="newRoomType">Room Type</label>
+                <select id="newRoomType" required>
+                    <option value="">Select room type</option>
+                    <option value="Classroom">Classroom</option>
+                    <option value="Computer Lab">Computer Lab</option>
+                    <option value="Seminar Hall">Seminar Hall</option>
+                </select>
+            </div>
+
+            <div class="facilities-field">
+                <label for="newFacilities">Facilities</label>
+                <input type="text" id="newFacilities"
+                       placeholder="Projector, Wi-Fi, Whiteboard">
+            </div>
+
+        </div>
+
+        <button type="submit" class="add-room-btn">
+            + Add Room
+        </button>
+
+    </form>
+
+    <p id="addRoomMessage"></p>
+
+</div>
+
+            <div id="adminBookingList">
+                <p>Loading booking requests...</p>
+            </div>
+            
+<div class="inactive-rooms-section">
+    <h3>Inactive Rooms</h3>
+    <p>Rooms that have been deactivated can be restored here.</p>
+
+    <div id="inactiveRoomList">
+        <p>Loading inactive rooms...</p>
+    </div>
+</div>
+
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+            © 2026 CampusSpace · Campus Room Availability System
+        </footer>
+
+    </main>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
