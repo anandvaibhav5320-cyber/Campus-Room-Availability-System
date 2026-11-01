@@ -10,13 +10,19 @@ const PORT = process.env.PORT || 3000;
 app.use(cors());
 app.use(express.json());
 
-const pool = new Pool({
-    host: process.env.DB_HOST,
-    port: Number(process.env.DB_PORT),
-    database: process.env.DB_NAME,
-    user: process.env.DB_USER,
-    password: process.env.DB_PASSWORD
-});
+const pool = new Pool(
+    process.env.DATABASE_URL
+        ? {
+            connectionString: process.env.DATABASE_URL
+        }
+        : {
+            host: process.env.DB_HOST,
+            port: Number(process.env.DB_PORT),
+            database: process.env.DB_NAME,
+            user: process.env.DB_USER,
+            password: process.env.DB_PASSWORD
+        }
+);
 
 // Home route
 app.get("/", (req, res) => {
@@ -34,15 +40,23 @@ app.get("/api/health", (req, res) => {
 // Database test
 app.get("/api/db-test", async (req, res) => {
     try {
-        const result = await pool.query("SELECT NOW() AS server_time");
+        const result = await pool.query(`
+            SELECT
+                NOW() AS server_time,
+                current_database() AS database_name,
+                current_user AS database_user,
+                inet_server_addr() AS server_address
+        `);
 
         res.json({
             status: "success",
             message: "PostgreSQL connected successfully!",
-            serverTime: result.rows[0].server_time
+            database: result.rows[0]
         });
+
     } catch (error) {
-        console.error("Database error:", error.message);
+        console.error("Database error:", error);
+
         res.status(500).json({
             status: "error",
             message: "Database connection failed."
