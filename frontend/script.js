@@ -1,5 +1,5 @@
 
-const API_URL = "http://localhost:3000/api/rooms";
+const API_URL = "https://campus-room-availability-system.onrender.com/api/rooms";
 
 let allRooms = [];
 
@@ -180,7 +180,7 @@ async function requestBooking(roomId) {
 
     try {
         const response = await fetch(
-            "http://localhost:3000/api/bookings",
+            "https://campus-room-availability-system.onrender.com/api/bookings",
             {
                 method: "POST",
                 headers: {
@@ -235,7 +235,7 @@ async function loadBookings() {
     const count = document.getElementById("bookingCount");
 
     try {
-        const response = await fetch("http://localhost:3000/api/bookings");
+        const response = await fetch("https://campus-room-availability-system.onrender.com/api/bookings");
 
         if (!response.ok) {
             throw new Error("Unable to fetch bookings");
@@ -283,7 +283,7 @@ async function loadAdminBookings() {
     const adminList = document.getElementById("adminBookingList");
 
     try {
-        const response = await fetch("http://localhost:3000/api/admin/bookings");
+        const response = await fetch("https://campus-room-availability-system.onrender.com/api/admin/bookings");
         const data = await response.json();
 
         if (!response.ok) {
@@ -333,7 +333,7 @@ async function loadAdminBookings() {
 async function changeBookingStatus(id, status) {
     try {
         const response = await fetch(
-            `http://localhost:3000/api/admin/bookings/${id}`,
+            `https://campus-room-availability-system.onrender.com/api/admin/bookings/${id}`,
             {
                 method: "PATCH",
                 headers: {
@@ -383,7 +383,7 @@ async function checkAvailability() {
 
     try {
         const response = await fetch(
-            `http://localhost:3000/api/availability?date=${date}&start_time=${startTime}&end_time=${endTime}`
+            `https://campus-room-availability-system.onrender.com/api/availability?date=${date}&start_time=${startTime}&end_time=${endTime}`
         );
 
         const data = await response.json();
@@ -432,7 +432,7 @@ async function loadTimetable() {
 
     try {
         const response = await fetch(
-            `http://localhost:3000/api/timetable?date=${date}`
+            `https://campus-room-availability-system.onrender.com/api/timetable?date=${date}`
         );
 
         const data = await response.json();
@@ -525,7 +525,7 @@ async function editRoom(roomId) {
 
     try {
         const response = await fetch(
-            `http://localhost:3000/api/admin/rooms/${roomId}`,
+            `https://campus-room-availability-system.onrender.com/api/admin/rooms/${roomId}`,
             {
                 method: "PUT",
                 headers: {
@@ -567,7 +567,7 @@ async function deactivateRoom(roomId) {
 
     try {
         const response = await fetch(
-            `http://localhost:3000/api/admin/rooms/${roomId}/deactivate`,
+            `https://campus-room-availability-system.onrender.com/api/admin/rooms/${roomId}/deactivate`,
             {
                 method: "PATCH"
             }
@@ -597,7 +597,7 @@ async function loadInactiveRooms() {
 
     try {
         const response = await fetch(
-            "http://localhost:3000/api/admin/rooms/inactive"
+            "https://campus-room-availability-system.onrender.com/api/admin/rooms/inactive"
         );
 
         const data = await response.json();
@@ -643,7 +643,7 @@ async function activateRoom(roomId) {
 
     try {
         const response = await fetch(
-            `http://localhost:3000/api/admin/rooms/${roomId}/activate`,
+            `https://campus-room-availability-system.onrender.com/api/admin/rooms/${roomId}/activate`,
             {
                 method: "PATCH"
             }
@@ -706,7 +706,7 @@ document.getElementById("addRoomForm").addEventListener("submit", async function
     };
 
     try {
-        const response = await fetch("http://localhost:3000/api/admin/rooms", {
+        const response = await fetch("https://campus-room-availability-system.onrender.com/api/admin/rooms", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
