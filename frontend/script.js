@@ -734,3 +734,57 @@ document.getElementById("addRoomForm").addEventListener("submit", async function
         message.style.color = "#dc2626";
     }
 });
+/* =================================
+   ROOMKHOJO NAVIGATION CONTROLS
+================================= */
+
+const appContainer = document.querySelector(".app");
+const menuToggle = document.getElementById("menuToggle");
+const sidebarOverlay = document.getElementById("sidebarOverlay");
+const sidebarLinks = document.querySelectorAll(".sidebar nav a");
+
+function updateMenuState() {
+    const isMobile = window.innerWidth <= 768;
+
+    const isOpen = isMobile
+        ? appContainer.classList.contains("mobile-nav-open")
+        : !appContainer.classList.contains("sidebar-collapsed");
+
+    menuToggle.setAttribute("aria-expanded", isOpen);
+}
+
+menuToggle.addEventListener("click", function () {
+    if (window.innerWidth <= 768) {
+        appContainer.classList.toggle("mobile-nav-open");
+    } else {
+        appContainer.classList.toggle("sidebar-collapsed");
+    }
+
+    updateMenuState();
+});
+
+sidebarOverlay.addEventListener("click", function () {
+    appContainer.classList.remove("mobile-nav-open");
+    updateMenuState();
+});
+
+sidebarLinks.forEach(function (link) {
+    link.addEventListener("click", function () {
+
+        sidebarLinks.forEach(function (item) {
+            item.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+        appContainer.classList.remove("mobile-nav-open");
+        updateMenuState();
+    });
+});
+
+window.addEventListener("resize", function () {
+    appContainer.classList.remove("mobile-nav-open");
+    updateMenuState();
+});
+
+updateMenuState();

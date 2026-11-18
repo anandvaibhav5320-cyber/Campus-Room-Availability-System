@@ -43,6 +43,9 @@ body {
     background: #3678e8;
     border-radius: 10px;
     padding: 10px 14px;
+    font-size: 17px;
+    font-weight: 800;
+    letter-spacing: -1px;
 }
 
 .nav-label, .eyebrow {
@@ -778,3 +781,272 @@ footer {
     }
 }
 
+/* RoomKhojo tagline */
+.tagline {
+    display: block;
+    margin-top: 5px;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    line-height: 1.4;
+    color: #A9BEDF;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+/* =================================
+   ROOMKHOJO ANIMATED NAVIGATION
+================================= */
+
+.sidebar {
+    width: 250px;
+    min-width: 250px;
+    transition: width 0.35s ease, min-width 0.35s ease;
+    overflow-x: hidden;
+}
+
+.brand-copy,
+.nav-text,
+.nav-label,
+.sidebar-bottom {
+    transition: opacity 0.2s ease;
+}
+
+.brand-copy {
+    white-space: nowrap;
+}
+
+nav a {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    transition: background 0.25s ease,
+                color 0.25s ease,
+                transform 0.25s ease;
+}
+
+nav a:hover {
+    transform: translateX(3px);
+}
+
+.nav-icon {
+    width: 22px;
+    min-width: 22px;
+    text-align: center;
+    font-size: 17px;
+}
+
+/* Hamburger button */
+
+.menu-toggle {
+    width: 42px;
+    height: 42px;
+    border: none;
+    border-radius: 10px;
+    background: #eaf0fa;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    transition: background 0.25s ease;
+}
+
+.menu-toggle:hover {
+    background: #dce8fb;
+}
+
+.menu-toggle span {
+    width: 19px;
+    height: 2px;
+    background: #17345f;
+    border-radius: 5px;
+    transition: transform 0.3s ease, opacity 0.2s ease;
+}
+
+.app.sidebar-collapsed .menu-toggle span:first-child,
+.app.mobile-nav-open .menu-toggle span:first-child {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.app.sidebar-collapsed .menu-toggle span:nth-child(2),
+.app.mobile-nav-open .menu-toggle span:nth-child(2) {
+    opacity: 0;
+}
+
+.app.sidebar-collapsed .menu-toggle span:last-child,
+.app.mobile-nav-open .menu-toggle span:last-child {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* Desktop collapsed sidebar */
+
+.app.sidebar-collapsed .sidebar {
+    width: 82px;
+    min-width: 82px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.app.sidebar-collapsed .brand {
+    justify-content: center;
+}
+
+.app.sidebar-collapsed .brand-copy,
+.app.sidebar-collapsed .nav-label,
+.app.sidebar-collapsed .nav-text,
+.app.sidebar-collapsed .sidebar-bottom {
+    display: none;
+}
+
+.app.sidebar-collapsed nav a {
+    justify-content: center;
+    padding: 14px 8px;
+}
+
+/* Mobile overlay */
+
+.sidebar-overlay {
+    display: none;
+}
+
+/* Smooth section navigation */
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 25px;
+}
+
+/* Mobile navigation */
+
+@media (max-width: 768px) {
+
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 270px;
+        min-width: 270px;
+        z-index: 1001;
+        transform: translateX(-100%);
+        transition: transform 0.35s ease;
+        overflow-y: auto;
+    }
+
+    .app.mobile-nav-open .sidebar {
+        transform: translateX(0);
+    }
+
+    .app.mobile-nav-open .sidebar-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(8, 18, 35, 0.55);
+        z-index: 1000;
+        animation: overlayFade 0.3s ease;
+    }
+
+    .app.mobile-nav-open .brand-copy,
+    .app.mobile-nav-open .nav-label,
+    .app.mobile-nav-open .nav-text,
+    .app.mobile-nav-open .sidebar-bottom {
+        display: block;
+    }
+
+    .app.mobile-nav-open .brand {
+        justify-content: flex-start;
+    }
+
+    .app.mobile-nav-open nav a {
+        justify-content: flex-start;
+    }
+
+    .app.sidebar-collapsed .sidebar {
+        width: 270px;
+        min-width: 270px;
+    }
+
+    .menu-toggle {
+        flex-shrink: 0;
+    }
+
+    .topbar {
+        gap: 12px;
+    }
+}
+
+@keyframes overlayFade {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .sidebar,
+    .menu-toggle span,
+    nav a {
+        transition: none;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+/* =================================
+   FIXED LEFT ROOMKHOJO SIDEBAR
+================================= */
+
+.sidebar {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    min-height: 100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    flex-shrink: 0;
+}
+
+/* Hamburger inside sidebar */
+
+.sidebar .menu-toggle {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    margin: 0 0 25px 0;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #1d2d4b;
+    box-shadow: none;
+}
+
+.sidebar .menu-toggle span {
+    background: #ffffff;
+}
+
+/* Minimized sidebar */
+
+.app.sidebar-collapsed .sidebar {
+    width: 82px;
+    min-width: 82px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.app.sidebar-collapsed .sidebar .menu-toggle {
+    align-self: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Mobile sidebar */
+
+@media (max-width: 768px) {
+    .sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        height: 100vh;
+        min-height: 100vh;
+    }
+}

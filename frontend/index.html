@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CampusSpace | Room Availability</title>
-
+    <title>RoomKhojo | Room Availability</title>
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -18,22 +17,58 @@
 
     <!-- Sidebar -->
     <aside class="sidebar">
-
+        <button
+    class="menu-toggle"
+    id="menuToggle"
+    type="button"
+    aria-label="Toggle navigation"
+    aria-expanded="true"
+>
+    <span></span>
+    <span></span>
+    <span></span>
+</button>
         <div class="brand">
-            <div class="brand-icon">C</div>
-            <div>Campus<span>Space</span></div>
-        </div>
+    <div class="brand-icon">RK</div>
+    <div class="brand-copy">
+        Room<span>Khojo</span>
+        <small class="tagline">Find. Reserve. Go.</small>
+    </div>
+</div>
 
-        <p class="nav-label">WORKSPACE</p>
+<p class="nav-label">WORKSPACE</p>
 
-        <nav>
-            <a class="active" href="#">▦ &nbsp; Dashboard</a>
-            <a href="#rooms">▣ &nbsp; Room catalogue</a>
-            <a href="#availability">▤ &nbsp; Availability</a>
-            <a href="#timetable">◷ &nbsp; Timetable</a>
-            <a href="#myBookings">▧ &nbsp; My Bookings</a>
-            <a href="#adminDashboard">⚙ &nbsp; Administration</a>
-        </nav>
+<nav>
+    <a class="active" href="#top" aria-label="Dashboard">
+        <span class="nav-icon">▦</span>
+        <span class="nav-text">Dashboard</span>
+    </a>
+
+    <a href="#rooms" aria-label="Room catalogue">
+        <span class="nav-icon">▣</span>
+        <span class="nav-text">Room catalogue</span>
+    </a>
+
+    <a href="#availability" aria-label="Availability">
+        <span class="nav-icon">▤</span>
+        <span class="nav-text">Availability</span>
+    </a>
+
+    <a href="#timetable" aria-label="Timetable">
+        <span class="nav-icon">◷</span>
+        <span class="nav-text">Timetable</span>
+    </a>
+
+    <a href="#myBookings" aria-label="My Bookings">
+        <span class="nav-icon">▧</span>
+        <span class="nav-text">My Bookings</span>
+    </a>
+
+    <a href="#adminDashboard" aria-label="Administration">
+        <span class="nav-icon">⚙</span>
+        <span class="nav-text">Administration</span>
+    </a>
+</nav>
 
         <div class="sidebar-bottom">
 
@@ -52,10 +87,10 @@
 
         </div>
     </aside>
-
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <!-- Main Content -->
-    <main class="main">
+    <main class="main" id="top">
 
         <!-- Header -->
         <header class="topbar">
@@ -68,6 +103,7 @@
                 <span class="status-dot"></span>
                 <span>System online</span>
             </div>
+            
         </header>
 
 
@@ -344,7 +380,8 @@
 
         <!-- Footer -->
         <footer>
-            © 2026 CampusSpace · Campus Room Availability System
+            © 2026 RoomKhojo · Campus Room Availability System
+            
         </footer>
 
     </main>
