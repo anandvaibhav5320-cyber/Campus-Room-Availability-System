@@ -32,6 +32,24 @@ CampusSpace aims to provide a centralized platform for room discovery, availabil
 - **Booking History:** View previously submitted booking requests and their current status.
 - **Room Management:** Administrators can add, edit, deactivate, and reactivate rooms.
 
+## Project Screenshots
+
+### 1. Dashboard
+![CampusSpace Dashboard](screenshots/dashboard.png)
+
+### 2. Room Catalogue
+![Room Catalogue](screenshots/room_catalogue.png)
+
+### 3. Availability Search
+![Availability Search](screenshots/availability.png)
+
+### 4. Room Timetable
+![Room Timetable](screenshots/timetable.png)
+
+### 5. Administration
+![Admin Dashboard](screenshots/admin_dashboard.png)
+
+
 ## Technology Stack
 
 ### Frontend
